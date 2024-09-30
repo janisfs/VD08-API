@@ -12,20 +12,32 @@
 
         <form method="post" class="mb-4">
             <div class="input-group">
-                <input type="text" name="city" class="form-control" placeholder="Введите название города" required>
+                <input type="text" name="city" class="form-control col-md-7"
+                       placeholder="Введите название города" required>
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-primary">Узнать погоду</button>
                 </div>
             </div>
         </form>
 
-        <div class="result">
+        <div class="result text-center">
             {% if weather %}
                 <div class="alert alert-info">
                     <h3>Погода в {{ weather['name'] }}</h3>
                     <p>Температура: {{ weather['main']['temp'] }} °C</p>
                     <p>Погода: {{ weather['weather'][0]['description'] }}</p>
                 </div>
+            {% endif %}
+        </div>
+
+        <div class="result text-center">
+            {% if news %}
+                <h3>Новости</h3>
+                <ul>
+                    {% for article in news %}
+                        <li><a href="{{ article['url'] }}">{{ article['title'] }}</a></li>
+                    {% endfor %}
+                </ul>
             {% endif %}
         </div>
     </div>
